@@ -10,10 +10,9 @@
 
 defined('_JEXEC') or die;
 
-
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
-
+use Joomla\CMS\Form\Form;
 
 class plgSystemModuleLabel extends CMSPlugin
 {
@@ -37,20 +36,25 @@ class plgSystemModuleLabel extends CMSPlugin
 	 */
 	function onContentPrepareForm($form, $data)
 	{
-		$app       = Factory::getApplication();
-		$component = $app->input->get('option', '');
-		$view      = $app->input->get('view', '');
-		if ($app->isAdmin() && $component == 'com_modules' && ($view == 'modules' || empty($view)))
+		$app = Factory::getApplication();
+
+		if ($app->isAdmin() && $app->input->get('option', '') == 'com_modules')
 		{
-			Factory::getDocument()->addScriptDeclaration("jQuery(document).ready(function () {
-				jQuery('#moduleList').find('tr a').each(function () {
-					var pattern = /\[(.*?)]/g;
-					var html = jQuery(this).html();
-					if (pattern.test(html)) {
-						jQuery(this).html(html.replace(pattern, '<span class=\"label label-inverse\">$1</span>'));
-					}
-				});
-			});");
+			$formName = $form->getName();
+
+			// Admin modules list
+			if ($formName == 'com_modules.modules.filter')
+			{
+				Factory::getDocument()->addScriptDeclaration("jQuery(document).ready(function () {
+					jQuery('#moduleList').find('tr a').each(function () {
+						var pattern = /\[(.*?)]/g;
+						var html = jQuery(this).html();
+						if (pattern.test(html)) {
+							jQuery(this).html(html.replace(pattern, '<span class=\"label label-inverse\">$1</span>'));
+						}
+					});
+				});");
+			}
 		}
 
 		return true;
