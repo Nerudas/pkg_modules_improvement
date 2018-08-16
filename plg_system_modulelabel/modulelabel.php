@@ -55,6 +55,25 @@ class plgSystemModuleLabel extends CMSPlugin
 					});
 				});");
 			}
+
+			// Admin module
+			if ($formName == 'com_modules.module')
+			{
+				// Prepare title
+				if (is_object($data) && !empty($data->title))
+				{
+					$data->labels[] = array();
+					preg_match_all('/\[.*?]/', $data->title, $matches);
+					if (!empty($matches[0]))
+					{
+						foreach ($matches[0] as $label)
+						{
+							$data->labels[] = $label;
+							$data->title    = trim(str_replace($label, '', $data->title));
+						}
+					}
+				}
+			}
 		}
 
 		return true;
