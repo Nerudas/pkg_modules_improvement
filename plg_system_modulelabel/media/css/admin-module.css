@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * @package   System - Module Label Plugin
  * @version    1.0.0
  * @author     Nerudas  - nerudas.ru
@@ -8,5 +7,10 @@
  * @link       https://nerudas.ru
  */
 
-defined('_JEXEC') or die;
+#jform_labels_chzn .search-field {
+	width: auto !important;
+}
 
+#jform_labels_chzn li.search-choice {
+	background-color: #333;
+}

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="labels">
-		<field name="labels" type="labels" label="PLG_SYSTEM_MODULELABEL_FIELD_LABEL"/>
+		<field name="labels" type="modulelabels"
+			   label="PLG_SYSTEM_MODULELABEL_FIELD_LABEL"
+			   class="input-xxlarge"/>
 	</fieldset>
 </form>

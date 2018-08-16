@@ -20,6 +20,7 @@
 		<folder>form</folder>
 	</files>
 	<media destination="plg_system_modulelabel" folder="media">
+		<folder>css</folder>
 		<folder>js</folder>
 	</media>
 	<config>

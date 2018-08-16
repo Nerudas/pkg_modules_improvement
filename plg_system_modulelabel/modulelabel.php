@@ -44,14 +44,14 @@ class plgSystemModuleLabel extends CMSPlugin
 			// Prepare title
 			if (is_object($data) && !empty($data->title))
 			{
-				$data->labels[] = array();
+				$data->labels = array();
 				preg_match_all('/\[.*?]/', $data->title, $matches);
 				if (!empty($matches[0]))
 				{
 					foreach ($matches[0] as $label)
 					{
-						$data->labels[] = $label;
-						$data->title    = trim(str_replace($label, '', $data->title));
+						$data->labels[] = trim(str_replace(array('[', ']'), '', $label));;
+						$data->title = trim(str_replace($label, '', $data->title));
 					}
 				}
 			}
@@ -89,6 +89,7 @@ class plgSystemModuleLabel extends CMSPlugin
 			if ($view == 'module')
 			{
 				HTMLHelper::script('media/plg_system_modulelabel/js/admin-module.min.js', array('version' => 'auto'));
+				HTMLHelper::stylesheet('media/plg_system_modulelabel/css/admin-module.min.css', array('version' => 'auto'));
 			}
 		}
 	}

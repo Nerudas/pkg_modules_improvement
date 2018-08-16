@@ -12,6 +12,7 @@
 		// Add  labels to head
 		$('#jform_labels').closest('.control-group').appendTo('.form-inline.form-inline-header');
 
+		// Remove labels tab
 		var removeLabelsTab = setInterval(function () {
 			var labels = $('#myTabTabs').find('a[href="#attrib-labels"]');
 			if ($(labels).length > 0) {
