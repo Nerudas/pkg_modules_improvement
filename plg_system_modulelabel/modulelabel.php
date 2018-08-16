@@ -62,12 +62,37 @@ class plgSystemModuleLabel extends CMSPlugin
 			$form->loadFile('form', false);
 		}
 
+		return true;
+	}
+
+	/**
+	 * Add labels to title
+	 *
+	 * @param  Form  $form The form to be altered.
+	 * @param  mixed $data The associated data for the form.
+	 *
+	 * @return bool
+	 *
+	 * @since 1.0.0
+	 */
+	function onUserBeforeDataValidation($form, &$data)
+	{
+		if ($form->getName() == 'com_modules.module' && is_array($data) && !empty($data['labels']))
+		{
+			$labels = array();
+			foreach (str_replace('#new#', '', $data['labels']) as $label)
+			{
+				$labels[] = '[' . $label . ']';
+			}
+
+			$data['title'] = trim(implode(' ', $labels) . ' ' . $data['title']);
+		}
 
 		return true;
 	}
 
 	/**
-	 * Add scripts
+	 * Add scripts & styles
 	 *
 	 * @return  void
 	 *
