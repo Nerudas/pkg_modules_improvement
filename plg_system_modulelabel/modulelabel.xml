@@ -19,6 +19,9 @@
 		<filename plugin="modulelabel">modulelabel.php</filename>
 		<folder>form</folder>
 	</files>
+	<media destination="plg_system_modulelabel" folder="media">
+		<folder>js</folder>
+	</media>
 	<config>
 		<fields name="params">
 			<fieldset name="basic">

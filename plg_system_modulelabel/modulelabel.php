@@ -13,6 +13,7 @@ defined('_JEXEC') or die;
 use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\HTML\HTMLHelper;
 
 class plgSystemModuleLabel extends CMSPlugin
 {
@@ -25,7 +26,7 @@ class plgSystemModuleLabel extends CMSPlugin
 	protected $autoloadLanguage = true;
 
 	/**
-	 * Add style to label in admin panel
+	 * Add field to admin module form
 	 *
 	 * @param  Form  $form The form to be altered.
 	 * @param  mixed $data The associated data for the form.
@@ -38,50 +39,58 @@ class plgSystemModuleLabel extends CMSPlugin
 	{
 		$app = Factory::getApplication();
 
-		if ($app->isAdmin() && $app->input->get('option', '') == 'com_modules')
+		if ($app->isAdmin() && $app->input->get('option', '') == 'com_modules' && $form->getName() == 'com_modules.module')
 		{
-			$formName = $form->getName();
-
-			// Admin modules list
-			if ($formName == 'com_modules.modules.filter')
+			// Prepare title
+			if (is_object($data) && !empty($data->title))
 			{
-				Factory::getDocument()->addScriptDeclaration("jQuery(document).ready(function () {
-					jQuery('#moduleList').find('tr a').each(function () {
-						var pattern = /\[(.*?)]/g;
-						var html = jQuery(this).html();
-						if (pattern.test(html)) {
-							jQuery(this).html(html.replace(pattern, '<span class=\"label label-inverse\">$1</span>'));
-						}
-					});
-				});");
-			}
-
-			// Admin module
-			if ($formName == 'com_modules.module')
-			{
-				// Prepare title
-				if (is_object($data) && !empty($data->title))
+				$data->labels[] = array();
+				preg_match_all('/\[.*?]/', $data->title, $matches);
+				if (!empty($matches[0]))
 				{
-					$data->labels[] = array();
-					preg_match_all('/\[.*?]/', $data->title, $matches);
-					if (!empty($matches[0]))
+					foreach ($matches[0] as $label)
 					{
-						foreach ($matches[0] as $label)
-						{
-							$data->labels[] = $label;
-							$data->title    = trim(str_replace($label, '', $data->title));
-						}
+						$data->labels[] = $label;
+						$data->title    = trim(str_replace($label, '', $data->title));
 					}
 				}
-
-				// Add filed to form
-				Form::addFormPath(__DIR__ . '/form');
-				Form::addFieldPath(__DIR__ . '/form');
-				$form->loadFile('form', false);
 			}
+
+			// Add filed to form
+			Form::addFormPath(__DIR__ . '/form');
+			Form::addFieldPath(__DIR__ . '/form');
+			$form->loadFile('form', false);
 		}
 
+
 		return true;
+	}
+
+	/**
+	 * Add scripts
+	 *
+	 * @return  void
+	 *
+	 * @since 1.0.0
+	 */
+	function onBeforeRender()
+	{
+		$app       = Factory::getApplication();
+		$component = $app->input->get('option', '');
+		if ($app->isAdmin() && $component == 'com_modules')
+		{
+			$view = $app->input->get('view', '');
+
+			if ($view == 'modules' || empty($view))
+			{
+				HTMLHelper::script('media/plg_system_modulelabel/js/admin-modules.min.js', array('version' => 'auto'));
+			}
+
+			if ($view == 'module')
+			{
+				HTMLHelper::script('media/plg_system_modulelabel/js/admin-module.min.js', array('version' => 'auto'));
+			}
+		}
 	}
 
 	/**
