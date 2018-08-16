@@ -50,9 +50,8 @@ class JFormFieldModuleLabels extends TagField
 	{
 		$return = parent::setup($element, $value, $group);
 
-		$this->multiple          = true;
-		$this->value             = (!is_array($this->value)) ? (array) $this->value : $this->value;
-		$this->element['custom'] = 'deny';
+		$this->multiple = true;
+		$this->value    = (!is_array($this->value)) ? (array) $this->value : $this->value;
 
 		return $return;
 	}
