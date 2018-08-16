@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset name="advmodassign" label="PLG_SYSTEM_ADVMODASSIGN_LABEL">
+		<fields name="params">
+			<field name="advmodassign" type="radio"
+				   default="0"
+				   label="PLG_SYSTEM_ADVMODASSIGN_LABEL"
+				   class="btn-group btn-group-yesno">
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+			</field>
+			<field name="advmodassign_clauses" type="subform"
+				   label="PLG_SYSTEM_ADVMODASSIGN_CLAUSES"
+				   layout="joomla.form.field.subform.repeatable-table"
+				   multiple="true"
+				   showon="advmodassign:1">
+				<form>
+					<field name="parameter" type="text" label="PLG_SYSTEM_ADVMODASSIGN_PARAMETER"/>
+					<field name="operator" type="list"
+						   label="PLG_SYSTEM_ADVMODASSIGN_OPERATOR"
+						   defaul="equally">
+						<option value="equal">PLG_SYSTEM_ADVMODASSIGN_OPERATOR_EQUAL</option>
+						<option value="not_equal">PLG_SYSTEM_ADVMODASSIGN_OPERATOR_NOT_EQUAL</option>
+					</field>
+					<field name="value" type="text"
+						   label="PLG_SYSTEM_ADVMODASSIGN_VALUE"
+						   hint="val1,val2,val3"/>
+				</form>
+			</field>
+		</fields>
+	</fieldset>
+</form>
