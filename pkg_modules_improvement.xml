@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.8" type="package" method="upgrade">
+	<name>PKG_MODULES_IMPROVEMENT</name>
+	<packagename>modules_improvement</packagename>
+	<author>Nerudas</author>
+	<creationDate>August 2018</creationDate>
+	<copyright>Copyright (c) 2015 - 2018 Nerudas. All rights reserved.</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<authorEmail>support@nerudas.ru</authorEmail>
+	<authorUrl>nerudas.ru</authorUrl>
+	<version>1.0.0</version>
+	<description>PKG_MODULES_IMPROVEMENT_DESCRIPTION</description>
+	<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.pkg_modules_improvement.sys.ini</language>
+		<language tag="ru-RU">ru-RU/ru-RU.pkg_modules_improvement.sys.ini</language>
+	</languages>
+	<files>
+		<folder type="plugin" id="advmodassign" group="system">plg_system_advmodassign</folder>
+		<folder type="plugin" id="modulelabel" group="system">plg_system_modulelabel</folder>
+		<folder type="plugin" id="modcustomimages" group="system">plg_system_modcustomimages</folder>
+	</files>
+	<updateservers>
+		<server type="extension" priority="1" nasystemme="Modules Improvement Package">
+			https://update.nerudas.ru/?extension=pkg_modules_improvement
+		</server>
+	</updateservers>
+</extension>
