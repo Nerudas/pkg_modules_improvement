@@ -73,6 +73,11 @@ class plgSystemModuleLabel extends CMSPlugin
 						}
 					}
 				}
+
+				// Add filed to form
+				Form::addFormPath(__DIR__ . '/form');
+				Form::addFieldPath(__DIR__ . '/form');
+				$form->loadFile('form', false);
 			}
 		}
 

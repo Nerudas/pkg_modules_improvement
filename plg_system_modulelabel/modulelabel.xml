@@ -17,6 +17,7 @@
 	</languages>
 	<files>
 		<filename plugin="modulelabel">modulelabel.php</filename>
+		<folder>form</folder>
 	</files>
 	<config>
 		<fields name="params">
