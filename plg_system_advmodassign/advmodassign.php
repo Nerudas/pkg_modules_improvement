@@ -15,6 +15,7 @@ use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\Registry\Registry;
 use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 
 class plgSystemAdvModAssign extends CMSPlugin
 {
@@ -104,12 +105,30 @@ class plgSystemAdvModAssign extends CMSPlugin
 				ArrayHelper::fromObject($params->get('advmodassign_clauses'), false) : array();
 			foreach ($assignments as $assignment)
 			{
+				$value = array_map('trim', explode(',', $assignment->value));
+				$equal = ($assignment->operator != 'not_equal');
+
 				$parameter = Factory::getApplication()->input->get(trim($assignment->parameter), '', 'raw');
-				$value     = array_map('trim', explode(',', $assignment->value));
+				if ($assignment->parameter == 'region')
+				{
+					BaseDatabaseModel::addIncludePath(JPATH_ROOT . '/components/com_location/models', 'LocationModel');
+					$regionModel = BaseDatabaseModel::getInstance('Regions', 'LocationModel', array('ignore_request' => true));
+					$user        = Factory::getUser();
+					if ((!$user->authorise('core.edit.state', 'com_location')) &&
+						(!$user->authorise('core.edit', 'com_location')))
+					{
+						$regionModel->setState('filter.published', 1);
+					}
+					else
+					{
+						$regionModel->setState('filter.published', array(0, 1));
+					}
+
+					$parameter = $regionModel->getVisitorRegion()->id;
+				}
 
 				if (!empty($parameter) && !empty($value))
 				{
-					$equal = ($assignment->operator != 'not_equal');
 					if (($equal && !in_array($parameter, $value)) || (!$equal && in_array($parameter, $value)))
 					{
 						return false;
