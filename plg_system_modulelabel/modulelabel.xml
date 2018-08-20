@@ -29,9 +29,4 @@
 			</fieldset>
 		</fields>
 	</config>
-	<updateservers>
-		<server type="extension" priority="1" name="System - Module Label Plugin">
-			https://update.nerudas.ru?extension=plg_system_modulelabel
-		</server>
-	</updateservers>
 </extension>
