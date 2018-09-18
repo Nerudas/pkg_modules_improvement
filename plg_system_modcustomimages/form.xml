@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
 	<fieldset name="images" label="PLG_SYSTEM_MODCUSTOMIMAGES_FIELDSET">
-		<field name="imagefolder" type="imagefolder" path="images/modules"/>
-		<field type="text" label="PLG_SYSTEM_MODCUSTOMIMAGES_SHORTCODE_LABEL"
-			   default="{imageFolder}"
-			   readonly="true"/>
-		<field name="images" type="ajaximage"
+		<field name="images_folder" type="folder"
+			   label="JGLOBAL_FIELD_IMAGES_FOLDER_LABEL"/>
+		<field name="images" type="images"
 			   label="PLG_SYSTEM_MODCUSTOMIMAGES_FIELD"
-			   multiple="true"
-			   text="true"/>
+			   folder_field="images_folder"
+			   folder="content"
+			   text="0"/>
 	</fieldset>
 </form>

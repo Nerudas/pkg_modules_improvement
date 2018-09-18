@@ -2,24 +2,14 @@
 <extension version="3.8" type="plugin" group="system" method="upgrade">
 	<name>PLG_SYSTEM_MODCUSTOMIMAGES</name>
 	<author>Nerudas</author>
-	<creationDate>August 2018</creationDate>
+	<creationDate>September 2018</creationDate>
 	<copyright>Copyright (c) 2013 - 2018 Nerudas. All rights reserved.</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>support@nerudas.ru</authorEmail>
 	<authorUrl>nerudas.ru</authorUrl>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 	<description>PLG_SYSTEM_MODCUSTOMIMAGES_DESCRIPTION</description>
 	<scriptfile>script.php</scriptfile>
-	<install>
-		<sql>
-			<file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
-		</sql>
-	</install>
-	<uninstall>
-		<sql>
-			<file driver="mysql" charset="utf8">sql/uninstall.mysql.utf8.sql</file>
-		</sql>
-	</uninstall>
 	<languages folder="language">
 		<language tag="en-GB">en-GB/en-GB.plg_system_modcustomimages.ini</language>
 		<language tag="en-GB">en-GB/en-GB.plg_system_modcustomimages.sys.ini</language>
@@ -29,7 +19,6 @@
 	<files>
 		<filename plugin="modcustomimages">modcustomimages.php</filename>
 		<filename>form.xml</filename>
-		<folder>sql</folder>
 	</files>
 	<config>
 		<fields name="params">
