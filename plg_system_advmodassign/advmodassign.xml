@@ -2,12 +2,12 @@
 <extension version="3.8" type="plugin" group="system" method="upgrade">
 	<name>PLG_SYSTEM_ADVMODASSIGN</name>
 	<author>Nerudas</author>
-	<creationDate>August 2018</creationDate>
+	<creationDate>September 2018</creationDate>
 	<copyright>Copyright (c) 2013 - 2018 Nerudas. All rights reserved.</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>support@nerudas.ru</authorEmail>
 	<authorUrl>nerudas.ru</authorUrl>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 	<description>PLG_SYSTEM_ADVMODASSIGN_DESCRIPTION</description>
 	<languages folder="language">
 		<language tag="en-GB">en-GB/en-GB.plg_system_advmodassign.ini</language>
